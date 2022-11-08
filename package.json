@@ -5,7 +5,7 @@
   "engines": {
     "node": "16.x"
   },
-  "scripts": {
+"scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",

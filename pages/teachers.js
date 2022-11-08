@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { DataContext } from '../store/GlobalState'
 import { getData } from '../utils/fetchData'
 import InfoModal from '../components/InfoModal/respModal'
-import ViewTeacher from './ViewTeacher/[id]'
+import ViewTeacher from './viewTeacher/[id]'
 
 const teachers = () => {
   const { state, dispatch } = useContext(DataContext)

@@ -1,6 +1,5 @@
 import connectDB from '../../../utils/connectDB'
 import Classes from '../../../models/classesModel'
-import Products from '../../../models/productModel'
 import auth from '../../../middleware/auth'
 import { CONTACT_ADMIN_ERR_MSG, ERROR_401 } from '../../../utils/constants'
 
