@@ -6,17 +6,17 @@ import { useRouter } from 'next/router'
 const Filter = ({ state }) => {
     const [search, setSearch] = useState('')
     const [sort, setSort] = useState('')
-    const [category, setCategory] = useState('')
+    // const [category, setCategory] = useState('')
 
-    const { categories } = state
+    // const { categories } = state
 
     const router = useRouter()
 
 
-    const handleCategory = (e) => {
-        setCategory(e.target.value)
-        filterSearch({ router, category: e.target.value }, '/', false);
-    }
+    // const handleCategory = (e) => {
+    //     setCategory(e.target.value)
+    //     filterSearch({ router, category: e.target.value }, '/', false);
+    // }
 
     const handleSort = (e) => {
         setSort(e.target.value)
@@ -29,7 +29,7 @@ const Filter = ({ state }) => {
 
     return (
         <div className="input-group">
-            <div className="input-group-prepend col-md-2 px-2 mt-2">
+            {/* <div className="input-group-prepend col-md-2 px-2 mt-2">
                 <select className="custom-select text-capitalize"
                     value={category} onChange={handleCategory}>
 
@@ -41,7 +41,7 @@ const Filter = ({ state }) => {
                         ))
                     }
                 </select>
-            </div>
+            </div> */}
 
             <form autoComplete="off" className="mt-2 col-md-8 px-2">
                 <input type="text" className="form-control" list="title_product" placeholder="Search"

@@ -12,20 +12,31 @@ const teachers = () => {
   const isAdmin = auth && auth.user && auth.user.role === 'admin'
   const [open, setOpen] = useState(false)
   const [id, setId] = useState('')
-  
+
   const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
     getTeachersData();
-  }, [teachers])
+  }, [])
 
-  const getTeachersData=()=>{
-    getData('teachers', auth.token)
-    .then(res => {
-      if (res.err) setTeachers([]);
-      else {
-        setTeachers(res.teachers);
-      }
+  const getTeachersData = async () => {
+    await getData('teachers', auth.token)
+      .then(res => {
+        if (res.err) setTeachers([]);
+        else {
+          setTeachers(res.teachers);
+        }
+      })
+  }
+
+  const handleDeleteTeacher=(teacher)=>{
+    dispatch({
+      type: 'ADD_MODAL',
+      payload: [{
+        data: '', id: teacher._id,
+        title: teacher.firstname + " " + teacher.middlename + " " + teacher.lastname,
+        type: 'DELETE_TEACHER'
+      }]
     })
   }
 
@@ -70,17 +81,10 @@ const teachers = () => {
                       <i className="fas fa-eye text-black mr-3" onClick={() => getViewTeacher(teacher)} title="View"></i>
                       <Link href={`/create/teacher/${teacher._id}`}><i className="fas fa-edit text-info mr-1" title="Edit"></i></Link>
                       <i className="fas fa-trash-alt text-danger ml-2" title="Remove" data-toggle="modal" data-target="#exampleModal"
-                        onClick={() => dispatch({
-                          type: 'ADD_MODAL',
-                          payload: [{
-                            data: '', id: teacher._id,
-                            title: teacher.firstname + " " + teacher.middlename + " " + teacher.lastname,
-                            type: 'DELETE_TEACHER'
-                          }]
-                        })}></i>
+                        onClick={() => handleDeleteTeacher(teacher)}></i>
                     </div>
                   </td>}
-                </tr>)) : <h5 style={{marginTop:'10%'}}>Please Add Teachers</h5>
+                </tr>)) : <tr style={{ marginTop: '10%' }}><td>Please Add Teachers</td></tr>
             }
           </tbody>
         </table>

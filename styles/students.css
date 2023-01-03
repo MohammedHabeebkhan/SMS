@@ -36,3 +36,7 @@ element.style {}
     border-color: none;
     box-shadow: none;
 }
+
+.icon-hover:hover{
+ cursor: pointer;
+}

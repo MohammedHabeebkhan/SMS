@@ -4,7 +4,7 @@ import { DataContext } from '../../../store/GlobalState'
 import { postData, getData, putData } from '../../../utils/fetchData'
 import { useRouter } from 'next/router'
 import moment from 'moment';
-import { isAdmin } from '../../../utils/util'
+import { isAdmin, isLoading } from '../../../utils/util'
 
 
 const TeacherManager = () => {
@@ -86,14 +86,17 @@ const TeacherManager = () => {
         if (maritalstatus == "" || maritalstatus == "-Select-") return dispatch({ type: 'NOTIFY', payload: { error: 'Please Select Marital Status.' } })
         if (!(numRegex.test(pincode))) return dispatch({ type: 'NOTIFY', payload: { error: 'Please enter correct PinCode.' } })
 
+        isLoading(true, dispatch);
         let res;
         if (onEdit) {
             res = await putData(`teachers/${id}`, { ...teacher }, auth.token)
             if (res.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } })
+            isLoading(false, dispatch);
             return router.push('/teachers')
         } else {
             res = await postData('teachers', teacher);
             if (res.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } })
+            isLoading(false, dispatch);
             return router.push('/teachers')
         }
     }

@@ -19,3 +19,7 @@ export const isLoggedIn = (auth, dispatch, router) => {
         router.push("/signin")
     }
 }
+
+export const isLoading = (loading, dispatch) => {
+    dispatch({ type: 'NOTIFY', payload: { loading } })
+}

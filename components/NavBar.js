@@ -43,9 +43,7 @@ function NavBar() {
                     <a className="dropdown-item">Add Product
                     </a>
                 </Link>
-                <Link href="/categories">
-                    <a className="dropdown-item">Categories</a>
-                </Link>
+                
             </>
         )
     }

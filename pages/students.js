@@ -23,10 +23,10 @@ const Students = () => {
 
   useEffect(() => {
     getStudentsData();
-  }, [students])
+  }, [])
 
-  const getStudentsData = () => {
-    getData('students', auth.token)
+  const getStudentsData = async () => {
+    await getData('students', auth.token)
       .then(res => {
         if (res.err) setStudents([]);
         else {
@@ -67,7 +67,7 @@ const Students = () => {
           </thead>
           <tbody>
             {
-              students && students.length !== 0 ? students.filter((val) => { let fullname = val.firstname + " " + val.middlename + " " + val.lastname; if (searchByStudName !== "") {if(fullname.toLowerCase().includes(searchByStudName.toLowerCase())) { return val }} else if(val.fathername.toLowerCase().includes(searchByFatherName)){return val}}).map((stud, index) => (
+              students && students.length !== 0 ? students.filter((val) => { let fullname = val.firstname + " " + val.middlename + " " + val.lastname; if (searchByStudName !== "") { if (fullname.toLowerCase().includes(searchByStudName.toLowerCase())) { return val } } else if (val.fathername.toLowerCase().includes(searchByFatherName)) { return val } }).map((stud, index) => (
                 // students && students.length !== 0 ? students.filter((val) => {if(searchByStudName == " " || searchByFatherName == " ") {return val}}).map((stud, index) => (
 
                 <tr key={stud._id}>
@@ -80,9 +80,9 @@ const Students = () => {
 
                   {isAdmin && <td>
                     <div className="row">
-                      <i className="fas fa-eye text-black mr-3" onClick={() => getViewStudent(stud)} title="View"></i>
-                      <Link href={`/create/${stud._id}`}><i className="fas fa-edit text-info mr-1" title="Edit"></i></Link>
-                      <i className="fas fa-trash-alt text-danger ml-2" title="Remove" data-toggle="modal" data-target="#exampleModal"
+                      <i className="fas fa-eye text-black mr-3 icon-hover" onClick={() => getViewStudent(stud)} title="View"></i>
+                      <Link href={`/create/${stud._id}`}><i className="fas fa-edit text-info mr-1 icon-hover" title="Edit"></i></Link>
+                      <i className="fas fa-trash-alt text-danger ml-2 icon-hover" title="Remove" data-toggle="modal" data-target="#exampleModal"
                         onClick={() => dispatch({
                           type: 'ADD_MODAL',
                           payload: [{
@@ -93,7 +93,7 @@ const Students = () => {
                         })}></i>
                     </div>
                   </td>}
-                </tr>)) : <h5 style={{ marginTop: '10%' }}>Please Add Students</h5>
+                </tr>)) : <tr style={{ marginTop: '10%' }}><td>Please Add Students</td></tr>
             }
           </tbody>
         </table>

@@ -45,20 +45,19 @@ const StudentManager = () => {
         accountneededcheck: false,
     }
 
+    
     const router = useRouter()
+    const { id } = router.query
     const [onEdit, setOnEdit] = useState(false)
 
-
-    const [pageTitle, setpageTitle] = useState('Add New Student')
-    const student_ = 'student_';
-    const _Image_ = '_Image_';
+    const { state, dispatch } = useContext(DataContext)
+    const { auth } = state
+    const [pageTitle, setpageTitle] = useState('')
     const [student, setStudent] = useState([initialState])
     const [checked, setChecked] = useState(false);
 
     const { firstname, middlename, lastname, dateofbirth, gender, age, rollno, admissionno, birthmark, emailid, feestatus, fathername, fatheroccupation, fathermobilenumber, mothername, motheroccupation, mothermobilenumber, religion, cast, mothertongue, aadharno, branch, Class, section, houseno, city, State, country, pincode, password, role, accountneededcheck } = student
-    const { id } = router.query
-    const { state, dispatch } = useContext(DataContext)
-    const { auth } = state
+    
     
     useEffect(() => {
         if (id) {
@@ -72,6 +71,7 @@ const StudentManager = () => {
                     }
                 })
         } else {
+            setpageTitle('Update Existing Student')
             setOnEdit(false)
             setStudent({ ...initialState })
         }

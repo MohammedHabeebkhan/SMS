@@ -75,7 +75,7 @@ const ViewStudent = (props) => {
     <div>
       <div className=" col-xl-12">
 
-        <form className="row my-3" >
+        <form className="row my-3">
                     <div className=" col-xl-12">
                         <div className="">
                             <h4>Student Info</h4>
